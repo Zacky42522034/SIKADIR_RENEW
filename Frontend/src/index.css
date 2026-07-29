@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  
+  /* Primary Colors - Brand Red */
+  --color-primary: #D21D24;
+  --color-primary-container: #b01a20;
+  --color-primary-fixed: #ffdad6;
+  --color-primary-fixed-dim: #ffb4ab;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #ffffff;
+  --color-on-primary-fixed: #410002;
+  --color-on-primary-fixed-variant: #93000a;
+  --color-inverse-primary: #ffb4ab;
+
+  /* Secondary Colors - Brand Gray */
+  --color-secondary: #707278;
+  --color-secondary-container: #e3e2e6;
+  --color-secondary-fixed: #e3e2e6;
+  --color-secondary-fixed-dim: #c7c6ca;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #1b1b1f;
+  --color-on-secondary-fixed: #1b1b1f;
+  --color-on-secondary-fixed-variant: #45464f;
+
+  /* Tertiary Colors - Green */
+  --color-tertiary: #00311f;
+  --color-tertiary-container: #004a31;
+  --color-tertiary-fixed: #6ffbbe;
+  --color-tertiary-fixed-dim: #4edea3;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #27c38a;
+  --color-on-tertiary-fixed: #002113;
+  --color-on-tertiary-fixed-variant: #005236;
+
+  /* Accent - Cyan */
+  --color-accent: #06B6D4;
+
+  /* Error Colors */
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  /* Surface Colors */
+  --color-surface: #f8f9fa;
+  --color-surface-dim: #d9dadb;
+  --color-surface-bright: #f8f9fa;
+  --color-surface-variant: #e1e3e4;
+  --color-surface-tint: #4059aa;
+  --color-surface-container: #edeeef;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #444651;
+  --color-inverse-surface: #2e3132;
+  --color-inverse-on-surface: #f0f1f2;
+  --color-background: #f8f9fa;
+  --color-on-background: #191c1d;
+
+  /* Outline */
+  --color-outline: #757682;
+  --color-outline-variant: #c5c5d3;
+
+  /* Status Colors */
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-danger: #dc2626;
+  --color-info: #3b82f6;
+  --color-pending: #f97316;
+
+  /* Border Radius */
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  /* Animations */
+  --animate-fade-slide-up: fadeSlideUp 0.3s ease-out forwards;
+  --animate-fade-in: fadeIn 0.15s ease-out forwards;
+  --animate-slide-up: slideUp 0.3s ease-out forwards;
+  --animate-slide-down: slideDown 0.3s ease-out forwards;
+  --animate-scale-in: scaleIn 0.15s ease-out forwards;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-pulse-glow: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(6, 182, 212, 0.2); }
+    50% { opacity: 0.7; box-shadow: 0 0 20px rgba(6, 182, 212, 0.6); }
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); }
+    70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 20px rgba(6, 182, 212, 0); }
+    100% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+  }
+}
+
+/* Glassmorphism Utilities */
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+  .glass-panel {
+    @apply bg-white/90 backdrop-blur-sm border border-gray-100 shadow-md;
+  }
+  .glass-card-top-border {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    @apply font-sans bg-surface text-on-surface antialiased;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Safe area padding for mobile bottom nav */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+/* Component Styles */
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-container text-white px-6 py-3 rounded-xl font-semibold transition-colors duration-200 shadow-md flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-white hover:bg-surface-container-low text-on-surface border border-outline-variant px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2;
+  }
+  .btn-ghost {
+    @apply bg-transparent hover:bg-surface-container-low text-on-surface-variant px-4 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:ring-1 focus:ring-secondary focus:border-secondary transition-all text-on-surface placeholder:text-outline-variant;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-outline-variant/20 overflow-hidden;
+  }
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg rounded-2xl overflow-hidden;
+  }
+}
