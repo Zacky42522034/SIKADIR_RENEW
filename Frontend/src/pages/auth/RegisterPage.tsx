@@ -85,6 +85,11 @@ export default function RegisterPage() {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     
+    if (video.videoWidth === 0 || video.videoHeight === 0) {
+      setError("Kamera sedang memuat, silakan tunggu 1-2 detik.");
+      return;
+    }
+    
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     

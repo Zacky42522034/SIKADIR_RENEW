@@ -173,14 +173,19 @@ async def check_duplicate(req: CheckDuplicateRequest):
 async def detect_face(req: DetectFaceRequest):
     try:
         # Prepare captured image
-        img1 = base64_to_cv2(req.captured_image_base64)
+        try:
+            img1 = base64_to_cv2(req.captured_image_base64)
+        except ValueError as ve:
+            raise HTTPException(status_code=400, detail=f"Gambar tidak valid: {str(ve)}")
+            
         img1 = enhance_lighting(img1)
 
         try:
             # We just extract faces to see if it passes
             DeepFace.extract_faces(img_path=img1, detector_backend="ssd", enforce_detection=True)
             return {"face_detected": True}
-        except ValueError:
+        except ValueError as ve:
+            print(f"ValueError from DeepFace: {str(ve)}, image shape: {img1.shape}")
             # DeepFace throws ValueError if no face is detected
             raise HTTPException(status_code=400, detail="Wajah tidak terdeteksi di foto yang Anda ambil. Pastikan wajah terlihat jelas dan pencahayaan cukup.")
     except HTTPException:
