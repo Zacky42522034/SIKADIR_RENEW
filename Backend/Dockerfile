@@ -2,7 +2,15 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# (No system dependencies needed since we use opencv-python-headless)
+# Install system dependencies for OpenCV (required by DeepFace which pulls non-headless opencv)
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libxcb1 \
+    libxext6 \
+    libsm6 \
+    libxrender1 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install
 COPY requirements.txt .
