@@ -106,8 +106,8 @@ export default function RegisterPage() {
     setDetectingFace(true);
     try {
       // Hanya mengecek apakah wajah terdeteksi (tidak mengecek duplikat)
-      const backendUrl = import.meta.env.VITE_DEEPFACE_URL || 'http://localhost:8000';
-      const response = await fetch(`${backendUrl}/detect`, {
+      const backendUrl = import.meta.env.VITE_DEEPFACE_URL || '/api';
+      const response = await fetch(`${backendUrl.replace(/\/verify$/, '')}/detect`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
