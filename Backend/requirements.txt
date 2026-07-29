@@ -1,6 +1,6 @@
 fastapi
 uvicorn[standard]
 deepface
-numpy
+numpy<2.0.0
 pydantic
 tf-keras
