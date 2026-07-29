@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && \
     pip uninstall -y opencv-python && \
-    pip install --no-cache-dir opencv-contrib-python-headless
+    pip install --no-cache-dir opencv-contrib-python-headless==4.9.0.80
 
 # Copy application code
 COPY . .
